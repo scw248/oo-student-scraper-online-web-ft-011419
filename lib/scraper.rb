@@ -11,12 +11,13 @@ class Scraper
     
     doc.css(".roster-cards-container").each do |profile|
       student = {}
-      binding.pry
+      #binding.pry
       student[:name] = profile.css(".student-card a div h4.student-name").text
       student[:location] = profile.css(".student-card a div p.student-location").text
-      student[:profile_url] = profile.css("div.student-card a href")
+      student[:profile_url] = profile.css("div.student-card a").attribute("href").value
       student_array << student
     end
+    binding.pry
     student_array
     
   end
