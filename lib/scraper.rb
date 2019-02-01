@@ -11,15 +11,12 @@ class Scraper
     profiles = {}
     
     doc.css("div student-card").each do |profile|
-      profiles[:name] = 
-      profiles[:location] =
-      profiles[:profile_url] =
+      profiles[:name] = ("h4.student_name").text
+      profiles[:location] = ("p.student-location").text
+      profiles[:profile_url] = ("div student-card a href")
       student_array << profiles
     end
     student_array
-    #name: ("h4.student_name").text
-    #location: ("p.student-location")
-    #profile_url: 
   end
 
   def self.scrape_profile_page(profile_url)
