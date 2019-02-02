@@ -24,11 +24,10 @@ class Student
   end
 
   def add_student_attributes(attributes_hash)
-    self.bio = "I was in southern California for college (sun and In-n-Out!), rural Oregon for high school (lived in a town with 1500 people and 3000+ cows), and Tokyo for elementary/middle school."
-    self.blog = "someone@blog.com"
-    self.linkedin = "someone@linkedin.com"
-    self.profile_quote = "\"Forget safety. Live where you fear to live. Destroy your reputation. Be notorious.\" - Rumi"
-    self.twitter = "someone@twitter.com"
+     attributes_hash.each do |attr, value|
+      self.send("#{attr}=", value)
+    end
+    self
   end
 
   def self.all
