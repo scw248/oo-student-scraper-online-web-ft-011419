@@ -29,6 +29,7 @@ class Scraper
     
     doc.css("html").each do |attribute|
       link_array = []
+      
       attribute.css("div.social-icon-container").children.css("a").each do |link|
         
         link_array << link.attribute("href").value
@@ -41,13 +42,13 @@ class Scraper
           attributes[:linkedin] = link
         elsif link.include?("github")
           attributes[:github] = link
-        elsif link.include?("blog")
+        else 
           attributes[:blog] = link
         end
       end
       
-      attribute.css("div.description-holder").each do |bio|
-        attributes[:bio] = bio.css("p").text
+      attribute.css(".details-container").each do |bio|
+        attributes[:bio] = bio.css(".description-holder p").text
       end
       
       attribute.css(".vitals-text-container").each do |quote|
