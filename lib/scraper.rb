@@ -32,7 +32,6 @@ class Scraper
       attribute.css("div.social-icon-container").children.css("a").each do |link|
         
         link_array << link.attribute("href").value
-        #binding.pry
       end
       
       link_array.each do |link|
@@ -47,23 +46,15 @@ class Scraper
         end
       end
       
-      attribute.css("div.description-holder p").text.each do |bio|
-        attributes[:bio] = bio
+      attribute.css("div.description-holder").each do |bio|
+        attributes[:bio] = bio.css("p").text
       end
       
-      attributes
+      attribute.css(".vitals-text-container").each do |quote|
+        attributes[:profile_quote] = quote.css("div.profile-quote").text
+      end
       
     end
-          
-          link_array
-      
-    #   attributes[:twitter] = attribute.css("div.social-icon-container a").attribute("href").value 
-    #   attributes[:linkedin] = attribute.css("div.social-icon-container a").attribute("href").value 
-    #   attributes[:github] = attribute.css("div.social-icon-container a").attribute("href").value 
-    #   attributes[:blog] = attribute.css("div.social-icon-container a").attribute("href").value 
-    #   attributes[:bio] = attribute.css("div.description-holder p").text
-    # end
-    #binding.pry
     attributes
   end
 
